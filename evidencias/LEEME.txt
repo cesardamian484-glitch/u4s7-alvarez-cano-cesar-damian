@@ -1,0 +1,4 @@
+Guarda aquí las capturas de la entrega (borra este archivo al terminar):
+  1. migrate.png              -> (Semana 3) salida de "python manage.py migrate" con las líneas "Applying ... OK"
+  2. tablas-aiven.png         -> (Semana 3) tablas django_migrations, auth_user, django_session, core_servicio
+  3. dbeaver-core_servicio.png -> (Semana 4) DBeaver, pestaña Data de core_servicio con los 5 registros (sin mostrar contraseñas)

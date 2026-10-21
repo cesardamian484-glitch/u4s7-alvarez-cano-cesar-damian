@@ -1,0 +1,24 @@
+{# DOCTYPE + lang: igual que en tus HTML de las semanas 1 y 2 · en plantillas de Django los comentarios van con llaves y gato #}
+<!DOCTYPE html>
+{# lang="es": el contenido de la página está en español #}
+<html lang="es">
+{# head: datos de la página que no se ven #}
+<head>
+  {# charset UTF-8: permite acentos y ñ #}
+  <meta charset="UTF-8">
+  {# title: el texto de la pestaña del navegador #}
+  <title>Hola desde MySQL</title>
+{# cierra el head #}
+</head>
+{# body: lo que se ve en la página #}
+<body>
+  {# h1: el título grande de la página #}
+  <h1>Hola desde MySQL</h1>
+  {# motor: Django reemplaza esa variable por el valor de contexto['motor'] que armó la vista #}
+  <p>Motor de base de datos: {{ motor }}</p>
+  {# host: reemplazado por contexto['host']; si dice "aivencloud.com" es MySQL real #}
+  <p>Host: {{ host }}</p>
+{# cierra el body #}
+</body>
+{# cierra el documento HTML #}
+</html>
