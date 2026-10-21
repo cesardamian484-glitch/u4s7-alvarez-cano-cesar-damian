@@ -16,7 +16,7 @@ from django.core.paginator import Paginator
 from .models import Servicio
 # ServicioForm: el ModelForm de la Semana 5
 from .forms import ServicioForm
-
+ 
 # inicio: la vista de la Semana 3 que muestra a qué base estás conectado (no cambia)
 def inicio(request):
     # settings_dict: diccionario con ENGINE, HOST, NAME, etc. de la conexión activa
@@ -31,7 +31,7 @@ def inicio(request):
     }
     # render: junta inicio.html con el contexto y devuelve la página
     return render(request, 'core/inicio.html', contexto)
-
+ 
 # raiz: la vista de la dirección principal del sitio ("/"); solo decide a dónde mandar al visitante
 def raiz(request):
     # is_authenticated: True si ya inició sesión, False si es un visitante anónimo
@@ -40,7 +40,7 @@ def raiz(request):
         return redirect('servicios')
     # sin sesión: directo a la pantalla de login (name='login'), sin pasar antes por /servicios/
     return redirect('login')
-
+ 
 # @login_required: si no hay sesión, manda a LOGIN_URL en lugar de ejecutar la vista
 @login_required
 # servicios: la vista del listado, ahora con búsqueda y paginación
@@ -62,7 +62,7 @@ def servicios(request):
     pagina = paginator.get_page(numero_pagina)
     # servicios: la página actual (se recorre igual que una lista) · query: para que el buscador recuerde lo escrito
     return render(request, 'core/servicios.html', {'servicios': pagina, 'query': query})
-
+ 
 # @login_required: si nadie inició sesión, Django lo manda a LOGIN_URL (el login de /admin)
 @login_required
 # crear_servicio: la vista que atiende /servicios/nuevo/
@@ -87,7 +87,7 @@ def crear_servicio(request):
         form = ServicioForm()
     # render: dibuja la plantilla, pasándole el formulario (vacío o con errores)
     return render(request, 'core/servicio_form.html', {'form': form, 'titulo_pagina': 'Nuevo servicio'})
-
+ 
 # @login_required: solo usuarios con sesión pueden editar
 @login_required
 # pk: el id que viene en la URL /servicios/<pk>/editar/
@@ -111,7 +111,7 @@ def editar_servicio(request, pk):
         form = ServicioForm(instance=servicio)
     # render: dibuja el mismo template de Crear, con título "Editar servicio"
     return render(request, 'core/servicio_form.html', {'form': form, 'titulo_pagina': 'Editar servicio'})
-
+ 
 # @login_required: solo usuarios con sesión iniciada pueden borrar
 @login_required
 # eliminar_servicio: recibe el pk (id) desde la URL /servicios/<pk>/eliminar/
@@ -126,7 +126,7 @@ def eliminar_servicio(request, pk):
         return redirect('servicios')
     # si es GET, solo muestra la pantalla de "¿Seguro?"; todavía no borra nada
     return render(request, 'core/servicio_confirm_delete.html', {'servicio': servicio})
-
+ 
 # registro: la vista que atiende /registro/ (recibe la petición del navegador)
 def registro(request):
     # si el usuario envió el formulario (botón «Registrarme»), la petición llega como POST
@@ -149,7 +149,7 @@ def registro(request):
         form = UserCreationForm()
     # render: dibuja registro.html con el formulario (vacío o con los errores)
     return render(request, 'core/registro.html', {'form': form})
-
+ 
 # iniciar_sesion: la vista que atiende /login/
 def iniciar_sesion(request):
     # si el usuario envió usuario y contraseña, la petición llega como POST
@@ -170,7 +170,7 @@ def iniciar_sesion(request):
         form = AuthenticationForm()
     # render: dibuja login.html con el formulario (vacío o con el error de credenciales)
     return render(request, 'core/login.html', {'form': form})
-
+ 
 # cerrar_sesion: la vista que atiende /logout/
 def cerrar_sesion(request):
     # logout(request): invalida la sesión actual; request.user vuelve a ser AnonymousUser
@@ -179,3 +179,4 @@ def cerrar_sesion(request):
     messages.info(request, 'Sesión cerrada correctamente.')
     # redirect: manda a la pantalla de login, donde se verá el mensaje
     return redirect('login')
+ 

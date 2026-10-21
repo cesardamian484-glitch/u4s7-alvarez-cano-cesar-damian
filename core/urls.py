@@ -2,7 +2,7 @@
 from django.urls import path
 # views: el módulo con todas las funciones-vista de esta app
 from . import views
-
+ 
 # urlpatterns: la lista de rutas que Django revisa, en orden, para cada URL
 urlpatterns = [
     # '': la raíz del sitio; sin sesión va directo a /login/, con sesión a /servicios/
